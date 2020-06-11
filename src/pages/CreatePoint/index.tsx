@@ -25,6 +25,7 @@ const CreatePoint = () => {
 
   const [selectedUf, setSelectedUf] = useState<UfModel>();
   const [selectedCity, setSelectedCity] = useState<CityModel>();
+  const [selectedItems, setSelectedItems] = useState<number[]>([]);
   const [selectedPosition, setSelectedPosition] = useState<[number, number]>([
     0,
     0,
@@ -94,15 +95,15 @@ const CreatePoint = () => {
   }
 
   function handleSelectItem(id: number) {
-    const alreadySelected = formData.items.findIndex((item) => item === id);
-    const items = [...formData.items];
+    const alreadySelected = selectedItems.findIndex((item) => item === id);
+    const newItems = [...selectedItems];
 
     if (alreadySelected >= 0) {
-      items.splice(alreadySelected, 1);
+      newItems.splice(alreadySelected, 1);
     } else {
-      items.push(id);
+      newItems.push(id);
     }
-    setFormData({ ...formData, items: items });
+    setSelectedItems(newItems);
   }
 
   async function handleSubmit(event: FormEvent) {
@@ -111,13 +112,15 @@ const CreatePoint = () => {
     const data = new FormData();
 
     data.append('name', formData.name);
-    data.append('email', formData.name);
+    data.append('email', formData.email);
     data.append('whatsapp', formData.whatsapp);
     data.append('uf', selectedUf?.sigla || '');
     data.append('city', selectedCity?.nome || '');
+    data.append('address', formData?.address || '');
+    data.append('number', formData?.number || '');
     data.append('latitude', String(selectedPosition[0]));
     data.append('longitude', String(selectedPosition[1]));
-    data.append('items', formData.items.join(','));
+    data.append('items', selectedItems.join(','));
 
     if (selectedFile) {
       data.append('image', selectedFile);
@@ -201,8 +204,8 @@ const CreatePoint = () => {
               <label htmlFor="endereco">Endereço</label>
               <input
                 type="text"
-                name="endereco"
-                id="endereco"
+                name="address"
+                id="address"
                 onChange={handleInputChange}
               />
             </div>
@@ -211,8 +214,8 @@ const CreatePoint = () => {
               <label htmlFor="numero">Número</label>
               <input
                 type="number"
-                name="numero"
-                id="numero"
+                name="number"
+                id="number"
                 onChange={handleInputChange}
               />
             </div>
@@ -257,7 +260,7 @@ const CreatePoint = () => {
               <li
                 key={item.id}
                 onClick={() => handleSelectItem(item.id)}
-                className={formData.items.includes(item.id) ? 'selected' : ''}
+                className={selectedItems.includes(item.id) ? 'selected' : ''}
               >
                 <img src={urlBase + '/uploads/'+ item.image} alt={item.title} />
                 <span>{item.title}</span>

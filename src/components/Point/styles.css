@@ -1,0 +1,37 @@
+#point-card {
+  margin: 24px 16px 0 0;
+  display: flex;
+  flex-direction: column;
+  width: 350px;
+}
+
+#point-card img {
+  max-height: 251px;
+  border-radius: 8px 8px 0 0;
+}
+
+#point-card .name {
+  color: #322153;
+  font-size: 36px;
+  font-weight: bold;
+  font-family: Ubuntu;
+  line-height: 41px;
+}
+
+#point-card .items {
+  color: #34cb79;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 34px;
+}
+
+#point-card .address {
+  color: #6c6c80;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 26px;
+}

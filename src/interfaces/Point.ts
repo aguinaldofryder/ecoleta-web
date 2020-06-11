@@ -1,3 +1,5 @@
+import { ItemModel } from './Item';
+
 export interface PointModel {
   /**
    * Name
@@ -25,6 +27,16 @@ export interface PointModel {
   city?: string;
 
   /**
+   * Address
+   */
+  address?: string;
+
+  /**
+   * Number
+   */
+  number?: string;
+
+  /**
    * Latitude
    */
   latitude?: number;
@@ -37,5 +49,7 @@ export interface PointModel {
   /**
    * Items
    */
-  items: number[];
+  items: ItemModel[];
+
+  image?: string;
 }

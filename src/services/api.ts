@@ -1,5 +1,5 @@
 import axios from 'axios';
-import nodeenv from 'nodeenv';
+import dotenv from 'dotenv';
 
 export const urlBase = process.env.BASE_URL || 'http://localhost:4000';
 

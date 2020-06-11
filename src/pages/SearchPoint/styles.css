@@ -1,0 +1,15 @@
+#page-search-point {
+  width: 100%;
+  max-width: 1100px;
+
+  margin: 0 auto;
+}
+
+#page-search-point .grid-points {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#page-search-point .count-points {
+  margin-top: 36px;
+}
